@@ -101,6 +101,29 @@ function linechart() {
     // Insert your code here to enable brushing interaction. //
     ///////////////////////////////////////////////////////////
     
+//stores a call for the bruhing
+    const brush = d3.brush()
+    .on("start brush end", brushed);
+
+
+//calls brushing
+    svg.call(brush);
+
+//creating the brush function which checks what points fall in the 
+//brushed range and changes them accordingly.
+    function brushed({selection}) {
+      let value = [];
+      if (selection) {
+        const [[x0, y0], [x1, y1]] = selection;
+        value = points
+        .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1);
+       
+      } 
+      svg.property("value", value).dispatch("input");
+    }
+  
+  
+
 
     return chart;
   }
