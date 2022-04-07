@@ -20,7 +20,7 @@ function scatterplot() {
     yLabelText = '',
     yLabelOffsetPx = 0,
     xScale = d3.scaleLinear(),
-    yScale = d3.scaleLinear(),
+    yScale = d3.scaleLinear(), 
     selectableElements = d3.select(null),
     dispatcher;
 
@@ -87,10 +87,6 @@ function scatterplot() {
         .attr('r', 5);
     
 
-     
-    dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
-    svg.selectAll('.selected').data());
-
      selectableElements = points;
 
    //stores a call for the bruhing
@@ -115,6 +111,9 @@ function scatterplot() {
    }
  
 
+
+   dispatcher.call(Object.getOwnPropertyNames(dispatcher._)[0],this,
+   svg.selectAll('.selected').data());
 
     return chart;
   }
@@ -184,12 +183,14 @@ function scatterplot() {
     return chart;
   };
 
+
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
     selectableElements.classed("selected", function(d){
       selectedData.includes(d)}
     );
   };
+
 
 
   return chart;
