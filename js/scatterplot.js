@@ -90,7 +90,7 @@ function scatterplot() {
      
     dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
     svg.selectAll('.selected').data());
-       
+
      selectableElements = points;
 
    //stores a call for the bruhing
@@ -179,8 +179,9 @@ function scatterplot() {
 
 
   chart.selectionDispatcher = function (_) {
-    if (!arguments.length) return 
-      dispatcher;
+    if (!arguments.length) return dispatcher;
+    dispatcher = _;
+    return chart;
   };
 
   chart.updateSelection = function (selectedData) {

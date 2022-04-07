@@ -99,10 +99,6 @@ function linechart() {
         .attr('cy', Y)        
         .attr('r',5);
   
-
-
-      
-           
          selectableElements = points;
     
     
@@ -193,10 +189,13 @@ function linechart() {
     return chart;
   };
 
+
   chart.selectionDispatcher = function (_) {
-    if (!arguments.length) return 
-      dispatcher;
+    if (!arguments.length) return dispatcher;
+    dispatcher = _;
+    return chart;
   };
+
 
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
