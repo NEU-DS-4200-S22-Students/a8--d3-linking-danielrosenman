@@ -101,8 +101,7 @@ function linechart() {
   
 
 
-        dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
-        svg.selectAll('.selected').data());
+      
            
          selectableElements = points;
     
@@ -129,21 +128,9 @@ function linechart() {
     }
   
   
-    function updateChart1(brushEvent) {
-      extent = brushEvent.selection;
-  
-      //TODO: Check all the circles that are within the brush region in Scatterplot 1
-      //Resource for code below: https://www.d3-graph-gallery.com/graph/interactivity_brush.html
-      myCircle1.classed("selected", function(d){ return isBrushed(extent, x1(d.Sepal_Length), y1(d.Petal_Length) ) } )
 
-  
-      //TODO: Select all the data points in Scatterplot 2 which have the same id as those selected in Scatterplot 1
-
-      myCircle2.classed('selected', function(d){ return isBrushed(extent, x1(d.Sepal_Length), y1(d.Petal_Length) ) } )
-
-
-  }
-
+    dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
+    svg.selectAll('.selected').data());
 
     return chart;
   }

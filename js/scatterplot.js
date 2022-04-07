@@ -20,8 +20,12 @@ function scatterplot() {
     yLabelText = '',
     yLabelOffsetPx = 0,
     xScale = d3.scaleLinear(),
-    yScale = d3.scaleLinear()
+    yScale = d3.scaleLinear(),
+    selectableElements = d3.select(null),
+    dispatcher;
 
+
+    
   // Create the chart by adding an svg to the div with the id 
   // specified by the selector using the given data
   function chart(selector, data) {
@@ -81,9 +85,13 @@ function scatterplot() {
         .attr('cx', X)
         .attr('cy', Y)
         .attr('r', 5);
-    ///////////////////////////////////////////////////////////
-    // Insert your code here to enable brushing interaction. //
-    ///////////////////////////////////////////////////////////
+    
+
+     
+    dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
+    svg.selectAll('.selected').data());
+       
+     selectableElements = points;
 
    //stores a call for the bruhing
    const brush = d3.brush()
@@ -168,6 +176,20 @@ function scatterplot() {
     yLabelOffsetPx = _;
     return chart;
   };
+
+
+  chart.selectionDispatcher = function (_) {
+    if (!arguments.length) return 
+      dispatcher;
+  };
+
+  chart.updateSelection = function (selectedData) {
+    if (!arguments.length) return;
+    selectableElements.classed("selected", function(d){
+      selectedData.includes(d)}
+    );
+  };
+
 
   return chart;
 }
