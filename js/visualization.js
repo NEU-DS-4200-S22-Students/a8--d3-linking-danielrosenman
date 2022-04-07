@@ -6,6 +6,11 @@
   // JSON.stringify(YOUR_OBJECT), just remove the surrounding '')
   d3.json('data/texas.json').then(data => {
 
+
+    //Created event type for the d3-dispatch.
+    const dispatcher = "updated-selection";
+
+
     // Create a line chart given x and y attributes, labels, offsets;
     // a div id selector to put our svg in; and the data to use.
     let lcYearPoverty = linechart()
@@ -29,6 +34,9 @@
       ('#scatterplot', data);
 
     
+lcYearPoverty.selectionDispatcher().on(dispatcher, spUnemployMurder.updateSelection);
+
+spUnemployMurder.selectionDispatcher().on(dispatcher, lcYearPoverty.updateSelection);
 
   });
 

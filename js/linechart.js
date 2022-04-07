@@ -20,7 +20,9 @@ function linechart() {
     yLabelText = '',
     yLabelOffsetPx = 0,
     xScale = d3.scalePoint(),
-    yScale = d3.scaleLinear()
+    yScale = d3.scaleLinear(),
+    selectableElements = d3.select(null),
+    dispatcher;
 
   // Create the chart by adding an svg to the div with the id 
   // specified by the selector using the given data
@@ -97,9 +99,13 @@ function linechart() {
         .attr('cy', Y)        
         .attr('r',5);
   
-    ///////////////////////////////////////////////////////////
-    // Insert your code here to enable brushing interaction. //
-    ///////////////////////////////////////////////////////////
+
+
+        dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
+        svg.selectAll('.selected').data());
+           
+         selectableElements = points;
+    
     
 //stores a call for the bruhing
     const brush = d3.brush()
@@ -123,6 +129,20 @@ function linechart() {
     }
   
   
+    function updateChart1(brushEvent) {
+      extent = brushEvent.selection;
+  
+      //TODO: Check all the circles that are within the brush region in Scatterplot 1
+      //Resource for code below: https://www.d3-graph-gallery.com/graph/interactivity_brush.html
+      myCircle1.classed("selected", function(d){ return isBrushed(extent, x1(d.Sepal_Length), y1(d.Petal_Length) ) } )
+
+  
+      //TODO: Select all the data points in Scatterplot 2 which have the same id as those selected in Scatterplot 1
+
+      myCircle2.classed('selected', function(d){ return isBrushed(extent, x1(d.Sepal_Length), y1(d.Petal_Length) ) } )
+
+
+  }
 
 
     return chart;
@@ -184,6 +204,18 @@ function linechart() {
     if (!arguments.length) return yLabelOffsetPx;
     yLabelOffsetPx = _;
     return chart;
+  };
+
+  chart.selectionDispatcher = function (_) {
+    if (!arguments.length) return 
+      dispatcher;
+  };
+
+  chart.updateSelection = function (selectedData) {
+    if (!arguments.length) return;
+    selectableElements.classed("selected", function(d){
+      selectedData.includes(d)}
+    );
   };
 
   return chart;
