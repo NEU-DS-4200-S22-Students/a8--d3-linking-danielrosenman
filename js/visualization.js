@@ -36,7 +36,7 @@
       ('#scatterplot', data);
 
     
-lcYearPoverty.selectionDispatcher().on(dispatchEvent, spUnemployMurder.updateSelection);
+lcYearPoverty.selectionDispatcher(dispatchEvent.on("lineToscatter"), spUnemployMurder.updateSelection);
 
 spUnemployMurder.selectionDispatcher().on(dispatchEvent, lcYearPoverty.updateSelection);
 

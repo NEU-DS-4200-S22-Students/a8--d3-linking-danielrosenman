@@ -99,7 +99,7 @@ function linechart() {
         .attr('cy', Y)        
         .attr('r',5);
   
-         selectableElements = points;
+        selectableElements = points;
     
     
 //stores a call for the bruhing
@@ -125,7 +125,7 @@ function linechart() {
   
   
 
-    dispatcher.call(Object.getOwnPropertyNames(dispatcher._)[0],this,
+    dispatcher.call("lineToscatter",this,
     svg.selectAll('.selected').data());
 
     return chart;
@@ -199,9 +199,9 @@ function linechart() {
 
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
-    selectableElements.classed("selected", function(d){
-      selectedData.includes(d)}
-    );
+    selectableElements.classed("selected", d =>
+    selectedData.includes(d)
+  );
   };
 
   return chart;
