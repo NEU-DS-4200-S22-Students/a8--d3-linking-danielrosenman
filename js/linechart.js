@@ -125,7 +125,7 @@ function linechart() {
   
   
 
-    dispatcher.call(Object.getOwnPropertyNames(dispatcher._[0]),this,
+    dispatcher.call(Object.getOwnPropertyNames(dispatcher._)[0],this,
     svg.selectAll('.selected').data());
 
     return chart;
