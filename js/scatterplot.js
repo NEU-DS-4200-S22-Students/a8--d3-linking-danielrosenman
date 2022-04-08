@@ -111,7 +111,6 @@ function scatterplot() {
    }
  
 
-   dispatcher = dispatchEvent("scatterToLine");
 
    dispatcher.call("scatterToLine",this,
    svg.selectAll('.selected').data());
@@ -184,6 +183,7 @@ function scatterplot() {
   };
 
 
+  //updates the line chart class
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
     selectableElements.classed("selected", d =>

@@ -124,7 +124,6 @@ function linechart() {
     }
   
   
-    dispatcher = dispatchEvent("lineToScatter");
 
     dispatcher.call("lineToScatter",this,
     svg.selectAll('.selected').data());
