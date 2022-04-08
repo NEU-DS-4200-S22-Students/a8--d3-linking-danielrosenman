@@ -8,7 +8,7 @@
 
 
     //Created event type for the d3-dispatch.
-    const dispatchEvent = d3.dispatch("lineToScatter","scatterToLine");
+    const dispatcherEvent = d3.dispatch("lineToScatter","scatterToLine");
 
 
     // Create a line chart given x and y attributes, labels, offsets;
