@@ -84,7 +84,9 @@ function scatterplot() {
       .merge(points)
         .attr('cx', X)
         .attr('cy', Y)
-        .attr('r', 5);
+        .attr('r', 5),
+        selectableElements = d3.select(null),
+        dispatcher;
     
 
      selectableElements = points;
