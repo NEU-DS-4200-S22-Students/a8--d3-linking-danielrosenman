@@ -19,7 +19,6 @@
       .y(d => d.poverty)
       .yLabel('POVERTY RATE')
       .yLabelOffset(40)
-      .selectionDispatcher(d3.dispatch(dispatchEvent))
       ('#linechart', data);
 
       
@@ -32,7 +31,6 @@
       .y(d => d.murder)
       .yLabel('MURDER RATE IN STATE PER 100000')
       .yLabelOffset(150)
-      .selectionDispatcher(d3.dispatch(dispatchEvent))
       ('#scatterplot', data);
 
     
