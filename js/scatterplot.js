@@ -84,9 +84,7 @@ function scatterplot() {
       .merge(points)
         .attr('cx', X)
         .attr('cy', Y)
-        .attr('r', 5),
-        selectableElements = d3.select(null),
-        dispatcher;
+        .attr('r', 5);
     
 
      selectableElements = points;
@@ -114,9 +112,8 @@ function scatterplot() {
  
 
 
-   dispatcher.call(Object.getOwnPropertyNames(dispatcher._)[0],this,
+   dispatcher.call("scatterToline",this,
    svg.selectAll('.selected').data());
-
     return chart;
   }
 

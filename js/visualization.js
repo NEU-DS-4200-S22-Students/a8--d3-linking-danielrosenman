@@ -38,7 +38,7 @@
     
 lcYearPoverty.selectionDispatcher(dispatchEvent.on("lineToscatter"), spUnemployMurder.updateSelection);
 
-spUnemployMurder.selectionDispatcher().on(dispatchEvent, lcYearPoverty.updateSelection);
+spUnemployMurder.selectionDispatcher(dispatchEvent.on("scatterToline"), lcYearPoverty.updateSelection);
 
   });
 
