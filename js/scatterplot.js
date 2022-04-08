@@ -106,13 +106,27 @@ function scatterplot() {
        const [[x0, y0], [x1, y1]] = selection;
        value = points
        .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1).data();
-      selectedPoints =  svg.selectAll('.selected').data();
 
-       dispatcher.call("scatterToLine",this,
-        selectedPoints);
      } 
     
        }
+
+        // Highlight the selected circles
+    function highlight() {
+      if (d3.event.selection === null) return;
+      const [
+        [x0, y0],
+        [x1, y1]
+      ] = d3.event.selection;
+
+      // If within the bounds of the brush, select it
+      points.classed("selected", d =>
+        x0 <= X(d) && X(d) <= x1 && y0 <= Y(d) && Y(d) <= y1
+      );
+
+      dispatcher.call("scatterToLine",this,
+      svg.selectAll('.selected').data());
+    }
  
 
     return chart;
