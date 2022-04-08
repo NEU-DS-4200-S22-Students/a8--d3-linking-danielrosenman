@@ -22,13 +22,14 @@ function scatterplot() {
     xScale = d3.scaleLinear(),
     yScale = d3.scaleLinear(), 
     selectableElements = d3.select(null),
-    dispatcher;
+    dispatcher,
+    dispatcherEvent;
 
 
     
   // Create the chart by adding an svg to the div with the id 
   // specified by the selector using the given data
-  function chart(selector, data) {
+  function chart(selector, data,dispatcher) {
     let svg = d3.select(selector)
       .append('svg')
         .attr('preserveAspectRatio', 'xMidYMid meet')
@@ -104,16 +105,16 @@ function scatterplot() {
      if (selection) {
        const [[x0, y0], [x1, y1]] = selection;
        value = points
-       .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1);
-      
+       .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1).data();
+      selectedPoints =  svg.selectAll('.selected').data();
+
+       dispatcher.call("scatterToLine",this,
+        selectedPoints);
      } 
-     svg.property("value", value).dispatch("input");
-   }
+    
+       }
  
 
-
-   dispatcher.call("scatterToLine",this,
-   svg.selectAll('.selected').data());
     return chart;
   }
 
@@ -179,7 +180,6 @@ function scatterplot() {
   chart.selectionDispatcher = function (_) {
     if (!arguments.length) return dispatcher;
     dispatcher = _;
-    return chart;
   };
 
 

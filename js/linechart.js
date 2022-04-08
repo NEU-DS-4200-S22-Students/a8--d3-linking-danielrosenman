@@ -22,7 +22,8 @@ function linechart() {
     xScale = d3.scalePoint(),
     yScale = d3.scaleLinear(),
     selectableElements = d3.select(null),
-    dispatcher;
+    dispatcher,
+    dispatcherEvent;
 
   // Create the chart by adding an svg to the div with the id 
   // specified by the selector using the given data
@@ -117,16 +118,14 @@ function linechart() {
       if (selection) {
         const [[x0, y0], [x1, y1]] = selection;
         value = points
-        .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1);
-       
+        .classed('selected', d => x0 <= X(d) && X(d) < x1 && y0 <= Y(d) && Y(d) < y1).data;
+        dispatcher.call(dispatcherEvent,this,
+          svg.selectAll('.selected').data());
       } 
-      svg.property("value", value).dispatch("input");
+
+
     }
   
-  
-
-    dispatcher.call("lineToScatter",this,
-    svg.selectAll('.selected').data());
 
     return chart;
   }
@@ -193,7 +192,6 @@ function linechart() {
   chart.selectionDispatcher = function (_) {
     if (!arguments.length) return dispatcher;
     dispatcher = _;
-    return chart;
   };
 
   //updates the line scatterplot class
