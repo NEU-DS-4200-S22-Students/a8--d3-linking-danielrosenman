@@ -8,7 +8,7 @@
 
 
     //Created event type for the d3-dispatch.
-    const dispatchEvent = d3.dispatch("lineToscatter","scatterToline");
+    const dispatchEvent = d3.dispatch("lineToScatter","scatterToLine");
 
 
     // Create a line chart given x and y attributes, labels, offsets;
@@ -34,9 +34,9 @@
       ('#scatterplot', data);
 
     
-lcYearPoverty.selectionDispatcher(dispatchEvent.on("lineToscatter"), spUnemployMurder.updateSelection);
+lcYearPoverty.selectionDispatcher(dispatchEvent.on("lineToScatter"), spUnemployMurder.updateSelection);
 
-spUnemployMurder.selectionDispatcher(dispatchEvent.on("scatterToline"), lcYearPoverty.updateSelection);
+spUnemployMurder.selectionDispatcher(dispatchEvent.on("scatterToLine"), lcYearPoverty.updateSelection);
 
   });
 

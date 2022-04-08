@@ -112,7 +112,7 @@ function scatterplot() {
  
 
 
-   dispatcher.call("scatterToline",this,
+   dispatcher.call("scatterToLine",this,
    svg.selectAll('.selected').data());
     return chart;
   }
