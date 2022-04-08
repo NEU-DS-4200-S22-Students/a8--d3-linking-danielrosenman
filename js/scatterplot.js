@@ -186,9 +186,9 @@ function scatterplot() {
 
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
-    selectableElements.classed("selected", function(d){
-      selectedData.includes(d)}
-    );
+    selectableElements.classed("selected", d =>
+    selectedData.includes(d)
+  );
   };
 
 
