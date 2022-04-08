@@ -124,6 +124,7 @@ function linechart() {
     }
   
   
+    dispatcher = dispatchEvent("lineToScatter");
 
     dispatcher.call("lineToScatter",this,
     svg.selectAll('.selected').data());
@@ -196,6 +197,7 @@ function linechart() {
     return chart;
   };
 
+  //updates the line scatterplot class
 
   chart.updateSelection = function (selectedData) {
     if (!arguments.length) return;
